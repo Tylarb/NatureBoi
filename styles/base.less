@@ -2,24 +2,11 @@
 // Base16 Builder by Chris Kempson (https://github.com/chriskempson)
 // Base16 scheme by Nguyen Nguyen (https://github.com/NLKNguyen)
 
-@import "syntax-variables.less";
-atom-text-editor, // <- remove when Shadow DOM can't be disabled
-:host {
-  color: @syntax-text-color;
+@import "syntax-variables";
+
+atom-text-editor {
   background-color: @syntax-background-color;
-  .gutter {
-    color: @syntax-gutter-text-color;
-    background-color: @syntax-gutter-background-color;
-  }
-
-  .gutter .line-number.cursor-line {
-    color: @syntax-gutter-text-color-selected;
-    background-color: @syntax-gutter-background-color-selected;
-  }
-
-  .gutter .line-number.cursor-line-no-selection {
-    color: @syntax-gutter-text-color-selected;
-  }
+  color: @syntax-text-color;
 
   .wrap-guide {
     color: @syntax-wrap-guide-color;
@@ -33,13 +20,30 @@ atom-text-editor, // <- remove when Shadow DOM can't be disabled
     color: @syntax-invisible-character-color;
   }
 
-  .search-results .marker .region {
-    background-color: transparent;
-    border: @syntax-result-marker-color;
+  .gutter {
+    background-color: @syntax-gutter-background-color;
+    color: @syntax-gutter-text-color;
+
+    .line-number {
+      &.cursor-line {
+        background-color: @syntax-gutter-background-color-selected;
+        color: @syntax-gutter-text-color-selected;
+      }
+
+      &.cursor-line-no-selection {
+        color: @syntax-gutter-text-color-selected;
+      }
+    }
   }
 
-  .search-results .marker.current-result .region {
-    border: @syntax-result-marker-color-selected;
+  .gutter .line-number.folded,
+  .gutter .line-number:after,
+  .fold-marker:after {
+    color: #c5c8c6;
+  }
+
+  .invisible {
+    color: @syntax-text-color;
   }
 
   .cursor {
@@ -54,172 +58,240 @@ atom-text-editor, // <- remove when Shadow DOM can't be disabled
     background-color: rgba(80, 80, 80, 0.33);
   }
 
+atom-text-editor .search-results .syntax--marker .region {
+    background-color: transparent;
+    border: @syntax-result-marker-color;
+  }
+
+atom-text-editor .search-results .syntax--marker.current-result .region {
+    border: @syntax-result-marker-color-selected;
+  }
 }
 
-.variable.parameter.function {
-  color: #d0d0d0;
+.syntax--variable {
+  color: #af87af;
+
+  &.syntax--parameter.syntax--function {
+    color: #d0d0d0;
+  }
+
+  &.syntax--interpolation {
+    color: #00af5f;
+  }
 }
 
-.comment, .punctuation.definition.comment {
+.syntax--comment {
   color: #808080;
 }
 
-.punctuation.definition.string, .punctuation.definition.variable, .punctuation.definition.string, .punctuation.definition.parameters, .punctuation.definition.string, .punctuation.definition.array {
-  color: #d0d0d0;
+.syntax--punctuation {
+  &.syntax--section.syntax--embedded {
+    color: #00af5f;
+  }
+
+  &.syntax--definition {
+    &.syntax--string,
+    &.syntax--variable,
+    &.syntax--parameters,
+    &.syntax--array {
+      color: #d0d0d0;
+    }
+
+    &.syntax--entity {
+      color: #df875f;
+    }
+
+    &.syntax--comment {
+      color: #808080;
+    }
+
+    &.syntax--heading {
+      color: #df875f;
+    }
+
+    &.syntax--bold {
+      font-weight: bold;
+      color: #00afaf;
+    }
+
+    &.syntax--italic {
+      font-style: italic;
+      color: #afdf00;
+    }
+  }
 }
 
-.none {
-  color: #d0d0d0;
+.syntax--markup {
+  &.syntax--heading {
+    color: #df875f;
+  }
+
+  &.syntax--bold {
+    font-weight: bold;
+    color: #00afaf;
+  }
+
+  &.syntax--italic {
+    font-style: italic;
+    color: #afdf00;
+  }
+
+  &.syntax--raw.syntax--inline {
+    color: #dfaf5f;
+  }
+
+  &.syntax--list {
+    color: #af87af;
+  }
+
+  &.syntax--quote {
+    color: #ff5faf;
+  }
+
+  &.syntax--inserted {
+    color: #dfaf5f;
+  }
+
+  &.syntax--deleted {
+    color: #af87af;
+  }
+
+  &.syntax--changed {
+    color: #afdf00;
+  }
 }
 
-.keyword.operator {
-  color: #d0d0d0;
+.syntax--keyword {
+  color: #afdf00;
+
+  &.syntax--operator {
+    color: #d0d0d0;
+  }
+
+  &.syntax--other {
+    &.syntax--unit {
+      color: #ff5faf;
+    }
+
+    &.syntax--special-method {
+      color: #df875f;
+    }
+  }
 }
 
-.keyword {
+.syntax--meta {
+  &.syntax--class {
+    color: #f3f3f3;
+  }
+
+  &.syntax--selector {
+    color: #afdf00;
+  }
+
+  &.syntax--link {
+    color: #ff5faf;
+  }
+
+  &.syntax--separator {
+    color: #d0d0d0;
+    background-color: #4d4d4c;
+  }
+
+  &.syntax--require {
+    color: #df875f;
+  }
+}
+
+.syntax--entity {
+  &.syntax--other {
+    &.syntax--inherited-class {
+      color: #dfaf5f;
+    }
+
+    &.syntax--attribute-name.syntax--id {
+      color: #df875f;
+    }
+
+    &.syntax--attribute-name {
+      color: #ff5faf;
+    }
+  }
+
+  &.syntax--name {
+    &.syntax--function {
+      color: #df875f;
+    }
+
+    &.syntax--class,
+    &.syntax--type.syntax--class {
+      color: #00afaf;
+    }
+
+    &.syntax--tag {
+      color: #af87af;
+    }
+
+    &.syntax--section {
+      color: #df875f;
+    }
+  }
+}
+
+.syntax--none {
+  color: @syntax-text-color;
+}
+
+.syntax--support {
+  &.syntax--function{
+    color: #5fafdf;
+
+    &.syntax--any-method {
+      color: #df875f;
+    }
+  }
+
+  &.syntax--class {
+    color: #00afaf;
+  }
+}
+
+.syntax--storage {
   color: #afdf00;
 }
 
-.variable {
-  color: #af87af;
-}
-
-.entity.name.function, .meta.require, .support.function.any-method {
-  color: #df875f;
-}
-
-.support.class, .entity.name.class, .entity.name.type.class {
-  color: #00afaf;
-}
-
-.meta.class {
-  color: #f3f3f3;
-}
-
-.keyword.other.special-method {
-  color: #df875f;
-}
-
-.storage {
-  color: #afdf00;
-}
-
-.support.function {
-  color: #5fafdf;
-}
-
-.string, .constant.other.symbol, .entity.other.inherited-class {
+.syntax--string {
   color: #dfaf5f;
+
+  &.syntax--regexp {
+    color: #5fafdf;
+  }
+
+  &.syntax--other.syntax--link {
+    color: #af87af;
+  }
 }
 
-.constant.numeric {
+.syntax--constant {
   color: #ff5faf;
+
+  &.syntax--other.syntax--symbol {
+    color: #dfaf5f;
+  }
+
+  &.syntax--numeric {
+    color: #ff5faf;
+  }
+
+  &.syntax--other.syntax--color {
+    color: #5fafdf;
+  }
+
+  &.syntax--character.syntax--escape {
+    color: #5fafdf;
+  }
 }
 
-.none {
-  color: #ff5faf;
-}
-
-.none {
-  color: #ff5faf;
-}
-
-.constant {
-  color: #ff5faf;
-}
-
-.entity.name.tag {
-  color: #af87af;
-}
-
-.entity.other.attribute-name {
-  color: #ff5faf;
-}
-
-.entity.other.attribute-name.id, .punctuation.definition.entity {
-  color: #df875f;
-}
-
-.meta.selector {
-  color: #afdf00;
-}
-
-.none {
-  color: #ff5faf;
-}
-
-.markup.heading .punctuation.definition.heading, .entity.name.section {
-  color: #df875f;
-}
-
-.keyword.other.unit {
-  color: #ff5faf;
-}
-
-.markup.bold, .punctuation.definition.bold {
-  font-weight: bold;
-  color: #00afaf;
-}
-
-.markup.italic, .punctuation.definition.italic {
-  font-style: italic;
-  color: #afdf00;
-}
-
-.markup.raw.inline {
-  color: #dfaf5f;
-}
-
-.string.other.link {
-  color: #af87af;
-}
-
-.meta.link {
-  color: #ff5faf;
-}
-
-.markup.list {
-  color: #af87af;
-}
-
-.markup.quote {
-  color: #ff5faf;
-}
-
-.meta.separator {
-  color: #d0d0d0;
-  background-color: #4d4d4c;
-}
-
-.markup.inserted {
-  color: #dfaf5f;
-}
-
-.markup.deleted {
-  color: #af87af;
-}
-
-.markup.changed {
-  color: #afdf00;
-}
-
-.constant.other.color {
-  color: #5fafdf;
-}
-
-.string.regexp {
-  color: #5fafdf;
-}
-
-.constant.character.escape {
-  color: #5fafdf;
-}
-
-.punctuation.section.embedded, .variable.interpolation {
-  color: #00af5f;
-}
-
-.invalid.illegal {
+.syntax--invalid.syntax--illegal {
   color: #262626;
   background-color: #af87af;
 }
