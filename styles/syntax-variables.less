@@ -1,3 +1,4 @@
+@import "colors";
 // Atom template by Jan T. Sott (https://github.com/idleberg/)
 // Base16 scheme and Base16 Builder by Chris Kempson (https://github.com/chriskempson)
 
@@ -5,29 +6,29 @@
 // include a syntax-variables.less file.
 
 // General colors
-@syntax-text-color: #d0d0d0;
-@syntax-cursor-color: #d0d0d0;
-@syntax-selection-color: #4d4d4c;
-@syntax-background-color: #262626;
+@syntax-text-color: @base05;
+@syntax-cursor-color: @base05;
+@syntax-selection-color: @base01;
+@syntax-background-color: @base00;
 
 // Guide colors
-@syntax-wrap-guide-color: #808080;
-@syntax-indent-guide-color: #808080;
-@syntax-invisible-character-color: #808080;
+@syntax-wrap-guide-color: @base03;
+@syntax-indent-guide-color: @base03;
+@syntax-invisible-character-color: @base03;
 
 // For find and replace markers
-@syntax-result-marker-color: #808080;
-@syntax-result-marker-color-selected: #d0d0d0;
+@syntax-result-marker-color: @base03;
+@syntax-result-marker-color-selected: @base05;
 
 // Gutter colors
-@syntax-gutter-text-color: #d0d0d0;
-@syntax-gutter-text-color-selected: #d0d0d0;
-@syntax-gutter-background-color: #262626;
-@syntax-gutter-background-color-selected: rgba(80, 80, 80, 0.33);
+@syntax-gutter-text-color: @base05;
+@syntax-gutter-text-color-selected: @base05;
+@syntax-gutter-background-color: @base00;
+@syntax-gutter-background-color-selected: @base02;
 
 // For git diff info. i.e. in the gutter
 // These are static and were not extracted from your textmate theme
-@syntax-color-renamed: #df875f;
-@syntax-color-added: #dfaf5f;
-@syntax-color-modified: #00afaf;
-@syntax-color-removed: #af87af;
+@syntax-color-renamed: @base0D;
+@syntax-color-added: @base0B;
+@syntax-color-modified: @base0A;
+@syntax-color-removed: @base08;
