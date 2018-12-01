@@ -1,4 +1,5 @@
-background_color = "#221900"
-foreground_color = "#fde7ad"
-cursor_color = "#f8f8f0"
-palette = "#1b1c1c:#f8a82e:#9d8001:#e6e156:#049d84:#9f9e35:#69c4e6:#c3e245:#7a7267:#d56043:#a6e245:#d4d601:#35ebf2:#8bbe07:#52eddf:#b4b49d"
+[[NatureBoi]]
+  background_color = "#221900"
+  foreground_color = "#fde7ad"
+  cursor_color = "#f8f8f0"
+  palette = "#1b1c1c:#f8a82e:#9d8001:#e6e156:#049d84:#9f9e35:#69c4e6:#c3e245:#7a7267:#d56043:#a6e245:#d4d601:#35ebf2:#8bbe07:#52eddf:#b4b49d"
